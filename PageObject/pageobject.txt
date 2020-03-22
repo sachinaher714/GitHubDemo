@@ -1,0 +1,47 @@
+import pytest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
+
+#@pytest.mark.usefixtures("Setup")  don't need to mentioned fixture in every file so create sepearet class file for that
+from PageObject.ConfirmPage import ConfirmPage
+from PageObject.HomePage import Homepage
+from utilities.BaseClass import Baseclass
+
+
+class Testone(Baseclass):
+
+    def test_e2e(self):
+        new = []
+        self.driver.find_element_by_css_selector("a[href*='shop']").click()
+        self.driver.maximize_window()
+        # driver.execute_script("window.scrollTo(0,430);")
+        products = self.driver.find_elements_by_xpath("//div[@class='card h-100']")
+        for i in products:
+            productName = i.find_element_by_xpath("div/h4/a").text
+            if productName == "Nokia Edge":
+                var = productName
+                i.find_element_by_xpath("div/button").click()
+
+        self.driver.find_element_by_css_selector("a[class*='btn-primary']").click()
+        var2 = self.driver.find_element_by_css_selector("h4[class='media-heading']").text
+        assert var2 == var
+        self.driver.find_element_by_xpath("//button[@class='btn btn-success']").click()
+
+
+        self.driver.find_element_by_id("country").send_keys("ind")
+
+        wait = WebDriverWait(self.driver, 7)
+        wait.until(expected_conditions.presence_of_element_located((By.LINK_TEXT, "India")))
+
+
+        self.driver.find_element_by_link_text("India").click()
+
+
+        self.driver.find_element_by_xpath("//div[@class='checkbox checkbox-primary']").click()
+        self.driver.find_element_by_css_selector("input[value='Purchase']").click()
+        print(self.driver.find_element_by_class_name("alert-success").text)
+
+        self.driver.get_screenshot_as_file("screen.png")
