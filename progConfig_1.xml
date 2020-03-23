@@ -1,0 +1,56 @@
+
+<!-- This file is auto-generated -->
+<ProgConfig>
+	<ProgConfigVersion version="1.0" />
+	<ProgProperties>
+		<HitsPerGameCycle>MultipleLevelsMultipleTimes</HitsPerGameCycle>
+		<EligibleBets>
+			<EligibleBet>Any</EligibleBet>
+		</EligibleBets>
+		<Contributions>
+			<Contribution>CoinIn</Contribution>
+		</Contributions>
+		<TriggerTypes>
+			<TriggerType>Symbol</TriggerType>
+		</TriggerTypes>
+	</ProgProperties>
+
+	<ProgLevelList>
+		<ProgLevel level="1" displayName="Grand" required="true" linkable="true" supportsPartial="false">
+			<CostToJackpotList type="linearAnyBet">
+				<CostToJackpot oddsToWin="1000" wagerToWin="1" multiplicationFactor="1" />
+			</CostToJackpotList>
+			<ContributionRate min="0" max="1" default="0.005" />
+			<Reset>
+				<Amount min="2000000" max="2000000" default="2000000" />
+				<DenomMultiplier>minimumDenom</DenomMultiplier>
+				<BetMultiplier>none</BetMultiplier>
+			</Reset>
+			<RoundingMethod>none</RoundingMethod>
+			<LinkRestriction allowSAP="false" allowLAP="true" allowWAP="false"/>
+
+			<!-- The following two are only used by game -->
+			<TriggerType>SymbolBased</TriggerType>
+			<Type>LAP</Type>
+		</ProgLevel>
+
+		<ProgLevel level="2" displayName="Major" required="true" linkable="true" supportsPartial="false">
+			<CostToJackpotList type="linearAnyBet">
+				<CostToJackpot oddsToWin="5000" wagerToWin="1" multiplicationFactor="1" />
+			</CostToJackpotList>      
+			<ContributionRate min="0" max="1" default="0.008" />
+			<Reset>
+				<Amount min="250000" max="250000" default="250000" />
+				<DenomMultiplier>minimumDenom</DenomMultiplier>
+				<BetMultiplier>none</BetMultiplier>
+			</Reset>
+			<RoundingMethod>none</RoundingMethod>
+			<LinkRestriction allowSAP="false" allowLAP="true" allowWAP="false"/>
+          
+			<!-- The following two are only used by game -->
+			<TriggerType>SymbolBased</TriggerType>
+			<Type>LAP</Type>
+		</ProgLevel>
+    
+	</ProgLevelList>
+</ProgConfig>
